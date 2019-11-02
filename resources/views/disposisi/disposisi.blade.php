@@ -2,7 +2,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#table').DataTable({
-      "iDisplayLength": 50
+      "iDisplayLength": 10
     });
 
 } );
@@ -45,7 +45,7 @@
                       @foreach($datas as $data)
                         <tr>
                           <td>
-                          <a href="{{route('disposisi.show', $data->id)}}"> 
+                          <a href="{{route('disposisi.show', $data->id_disposisi)}}"> 
                           {{$data->disposisi}}
                           </a>
                           </td>
@@ -55,8 +55,8 @@
                             Action
                           </button>
                           <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                            <a class="dropdown-item" href="{{route('user.edit', $data->id)}}"> Edit </a>
-                            <form action="{{ route('user.destroy', $data->id) }}" class="pull-left"  method="post">
+                            <a class="dropdown-item" href="{{route('disposisi.edit', $data->id)}}"> Edit </a>
+                            <form action="{{ route('disposisi.destroy', $data->id) }}" class="pull-left"  method="post">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
                             <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> Delete

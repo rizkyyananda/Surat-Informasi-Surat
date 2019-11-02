@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Disposisi;
+use App\SuratMasuk;
 // use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class DisposisiController extends Controller
+class SuratMasukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class DisposisiController extends Controller
     public function index()
     {
 
-        $datas = Disposisi::get();
-        return view('disposisi.disposisi', compact('datas'));
+        $datas = SuratMasuk::get();
+        return view('suratmasuk.suratmasuk', compact('datas'));
     }
 
     /**

@@ -1,4 +1,4 @@
-@section('js')
+<!-- @section('js')
     <script type="text/javascript">
         function readURL() {
             var input = this;
@@ -19,22 +19,8 @@
                 return false
             })
         })
-
-
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('confirm_password').value) {
-    document.getElementById('submit').disabled = false;
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'matching';
-  } else {
-    document.getElementById('submit').disabled = true;
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'not matching';
-  }
-}
     </script>
-@stop
+@stop -->
 
 @extends('layouts.app')
 
@@ -53,7 +39,7 @@ var check = function() {
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
                             <div class="col-md-12">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                                <input id="name" type="text" class="form-control" name="disposisi" value="{{ old('name') }}" required>
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
