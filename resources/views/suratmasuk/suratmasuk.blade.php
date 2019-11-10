@@ -14,7 +14,7 @@
     <div class="row">
 
       <div class="col-lg-2">
-        <a href="{{ route('disposisi.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Surat Masuk</a>
+        <a href="{{ route('suratmasuk.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Surat Masuk</a>
       </div>
         <div class="col-lg-12">
                       @if (Session::has('message'))
@@ -27,7 +27,7 @@
                   <div class="card">
 
                     <div class="card-body">
-                      <h4 class="card-title">Data Disposisi</h4>
+                      <h4 class="card-title">Data Surat Masuk</h4>
                       
                       <div class="table-responsive">
                         <table id="table" class="table table-striped">
@@ -63,8 +63,9 @@
                                 Action
                               </button>
                               <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                                <a class="dropdown-item" href="{{route('disposisi.edit', $data->id)}}"> Edit </a>
-                                <form action="{{ route('disposisi.destroy', $data->id) }}" class="pull-left"  method="post">
+                                <a class="dropdown-item" href="{{route('suratmasuk.edit', $data->id)}}"> Edit </a>
+                                 <a class="dropdown-item" href="{{route('suratmasuk.show', $data->id)}}"> Detail </a>
+                                <form action="{{ route('suratmasuk.destroy', $data->id) }}" class="pull-left"  method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
                                 <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> Delete

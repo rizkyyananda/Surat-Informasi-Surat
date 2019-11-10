@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SuratMasuk;
-// use Carbon\Carbon;
+use App\Disposisi;
+use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SuratMasukController extends Controller
@@ -41,7 +43,8 @@ class SuratMasukController extends Controller
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
-        return view('disposisi.create');
+        $datas = Disposisi::get();
+        return view('suratmasuk.create', compact('datas'));
     }
 
     /**
@@ -50,27 +53,50 @@ class SuratMasukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
-        $count = Disposisi::where('disposisi',$request->input('disposisi'))->count();
+        $count = SuratMasuk::where('no_surat',$request->input('no_surat'))->count();
 
         if($count>0){
             Session::flash('message', 'Already exist!');
             Session::flash('message_type', 'danger');
-            return redirect()->to('user');
+            return redirect()->to('suratmasuk');
         }
 
         $this->validate($request, [
+            'nama_instansi' => 'required|string|max:255',
+            'no_surat' => 'required|string|max:255',
+            'jenis_surat' => 'required|string|max:255',
+            'tgl_terima' => 'required|string|max:255',
+            'nama_pengirim' => 'required|string|max:255',
             'disposisi' => 'required|string|max:255',
+                
         ]);
 
-        Disposisi::create([
-            'disposisi' => $request->input('disposisi')
+         if($request->file('gambar') == '') {
+            $gambar = NULL;
+        } else {
+            $file = $request->file('gambar');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $request->file('gambar')->move("images/user", $fileName);
+            $gambar = $fileName;
+        }
+
+        SuratMasuk::create([
+            'nama_instansi' => $request->input('nama_instansi'),
+            'no_surat' => $request->input('no_surat'),
+            'jenis_surat' => $request->input('jenis_surat'),
+            'tgl_terima' => $request->input('tgl_terima'),
+            'nama_pengirim' => $request->input('nama_pengirim'),
+            'disposisi' => $request->input('disposisi'),
+            'gambar' => $gambar
         ]);
 
         Session::flash('message', 'Berhasil ditambahkan!');
         Session::flash('message_type', 'success');
-        return redirect()->route('disposisi.index');
+        return redirect()->route('suratmasuk.index');
 
     }
 
@@ -80,17 +106,7 @@ class SuratMasukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
-                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-                return redirect()->to('/');
-        }
-
-        $data = User::findOrFail($id);
-
-        return view('disposisi.show', compact('data'));
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -98,13 +114,27 @@ class SuratMasukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     public function show($id)
+    {
+        if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
+                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+                return redirect()->to('/');
+        }
+
+        $data = SuratMasuk::findOrFail($id);
+
+        return view('suratmasuk.show', compact('data'));
+    }
+
     public function edit($id)
     {   
        
-        $data = Disposisi::findOrFail($id);
+        $data = SuratMasuk::findOrFail($id);
 
         // return view('disposisi.edit', compact('data'));
-        return view('disposisi.edit',  compact('data'));
+        $datas = Disposisi::get();
+        return view('suratmasuk.edit',  compact('data'), compact('datas'));
     }
 
     /**
@@ -116,14 +146,29 @@ class SuratMasukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user_data = Disposisi::findOrFail($id);
+       $user_data = SuratMasuk::findOrFail($id);
 
+        $user_data->nama_instansi = $request->input('nama_instansi');
+        $user_data->no_surat = $request->input('no_surat');
+        $user_data->jenis_surat = $request->input('jenis_surat');
+        $user_data->tgl_terima = $request->input('tgl_terima');
+         if($request->file('gambar')) 
+        {
+            $file = $request->file('gambar');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $request->file('gambar')->move("images/user", $fileName);
+            $user_data->gambar = $fileName;
+        }
+        $user_data->nama_pengirim = $request->input('nama_pengirim');
         $user_data->disposisi = $request->input('disposisi');
-        $user_data->update();
 
+
+        $user_data->update();
         Session::flash('message', 'Berhasil diubah!');
         Session::flash('message_type', 'success');
-        return redirect()->to('disposisi');
+        return redirect()->to('suratmasuk');
     }
 
     /**
