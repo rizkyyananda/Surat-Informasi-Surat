@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2019 at 02:12 AM
+-- Generation Time: Nov 10, 2019 at 04:07 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -29,17 +29,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `disposisi` (
-  `id_disposisi` int(11) NOT NULL,
-  `disposisi` varchar(50) NOT NULL
+  `id` int(11) NOT NULL,
+  `disposisi` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `disposisi`
 --
 
-INSERT INTO `disposisi` (`id_disposisi`, `disposisi`) VALUES
-(1, 'Kepala Balai'),
-(2, 'Kabag TU');
+INSERT INTO `disposisi` (`id`, `disposisi`, `created_at`, `updated_at`) VALUES
+(1, 'Kepala Balai', '2019-11-08 18:20:08', '2019-11-08 18:20:08'),
+(2, 'Kasubag Umum', '2019-11-08 20:20:57', '2019-11-08 20:20:57'),
+(3, 'Kabag Teknis', '2019-11-08 20:21:31', '2019-11-08 20:21:31');
 
 -- --------------------------------------------------------
 
@@ -66,6 +69,32 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `suratmasuk`
+--
+
+CREATE TABLE `suratmasuk` (
+  `id` int(11) NOT NULL,
+  `nama_instansi` varchar(50) NOT NULL,
+  `no_surat` varchar(50) NOT NULL,
+  `jenis_surat` varchar(50) NOT NULL,
+  `tgl_terima` date NOT NULL,
+  `gambar` text,
+  `nama_pengirim` varchar(50) NOT NULL,
+  `disposisi` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `suratmasuk`
+--
+
+INSERT INTO `suratmasuk` (`id`, `nama_instansi`, `no_surat`, `jenis_surat`, `tgl_terima`, `gambar`, `nama_pengirim`, `disposisi`, `created_at`, `updated_at`) VALUES
+(7, 'PT. Sprint Asia Teknologi', 'No : 01.001/SMK-AI/VIII/2017', 'Surat Masuk', '2019-11-09', '12733-2019-11-09-03-08-10.png', 'Rizky', 'Kepala Balai', '2019-11-09 03:54:33', '2019-11-08 20:54:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -76,7 +105,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gambar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `level` enum('sekretaris','staff','kabag tu','kabid teknis','kepala bbksda','subag') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -97,12 +126,18 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `gambar`, `l
 -- Indexes for table `disposisi`
 --
 ALTER TABLE `disposisi`
-  ADD PRIMARY KEY (`id_disposisi`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `suratmasuk`
+--
+ALTER TABLE `suratmasuk`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -120,7 +155,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `disposisi`
 --
 ALTER TABLE `disposisi`
-  MODIFY `id_disposisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -129,10 +164,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `suratmasuk`
+--
+ALTER TABLE `suratmasuk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
