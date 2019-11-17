@@ -14,7 +14,7 @@
     <div class="row">
 
       <div class="col-lg-2">
-        <a href="{{ route('suratmasuk.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Surat Masuk</a>
+        <a href="{{ route('suratkeluar.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Surat Keluar</a>
       </div>
       <div class="col-lg-12">
         @if (Session::has('message'))
@@ -27,17 +27,17 @@
         <div class="card">
 
           <div class="card-body">
-            <h4 class="card-title">Data Surat Masuk</h4>
-
+            <h4 class="card-title">Data Surat Keluar</h4>
+            
             <div class="table-responsive">
               <table id="table" class="table table-striped">
                 <thead>
                   <tr>
                     <th>
-                      Nama Instansi
+                      Nomor Surat
                     </th>
                     <th>
-                      No Surat
+                      Tujuan Surat
                     </th>
                     <th>
                       Action
@@ -47,17 +47,17 @@
                 <tbody>
                   @foreach($datas as $data)
                   <tr>
-                    <td>{{$data->nama_instansi}}</td>
-                    <td>{{$data->no_surat}}</td>
+                    <td>{{$data->nomor_surat}}</td>
+                    <td>{{$data->tujuan_surat}}</td>
                     <td>
-                      <button><a href="{{route('suratmasuk.edit', $data->id)}}" title="edit"><i class="fa fa-edit btn btn-primary"></i></a></button>
-                      <form action="{{ route('suratmasuk.destroy', $data->id) }}" class="pull-left"  method="post">
+                      <button><a href="{{route('suratkeluar.edit', $data->id)}}"><i class="fa fa-edit btn btn-primary"></i></a></button>
+                      <form action="{{ route('suratkeluar.destroy', $data->id) }}" class="pull-left"  method="post">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
-                        <button onclick="return confirm('Anda yakin ingin menghapus data ini?')"> <i class="fa fa-trash btn btn-danger"  title="hapus"></i>
+                        <button onclick="return confirm('Anda yakin ingin menghapus data ini?')"> <i class="fa fa-trash btn btn-danger" ></i>
                         </button>
                       </form>
-                      <button><a href="{{route('suratmasuk.show', $data->id)}}" title="detail"><i class="fa fa-search-plus btn btn-success"></i></a></button>
+                      <button><a href="{{route('suratkeluar.show', $data->id)}}"><i class="fa fa-search-plus btn btn-success"></i></a></button>
                     </td>
                   </tr>
                   @endforeach

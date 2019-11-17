@@ -58,7 +58,7 @@
       <div class="card">
 
         <div class="card-body">
-          <h4 class="card-title">Data Surat Masuk dan Surat Keluar</h4>
+          <h4 class="card-title">Data Surat Keluar</h4>
 
           <div class="table-responsive">
             <table class="table table-striped" id="table">

@@ -58,7 +58,6 @@
 
                             @endif
 
-
                               {{$data->name}}
                             </td>
                             <td>
