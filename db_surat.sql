@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2019 at 04:07 AM
+-- Generation Time: Nov 17, 2019 at 04:48 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -41,8 +41,7 @@ CREATE TABLE `disposisi` (
 
 INSERT INTO `disposisi` (`id`, `disposisi`, `created_at`, `updated_at`) VALUES
 (1, 'Kepala Balai', '2019-11-08 18:20:08', '2019-11-08 18:20:08'),
-(2, 'Kasubag Umum', '2019-11-08 20:20:57', '2019-11-08 20:20:57'),
-(3, 'Kabag Teknis', '2019-11-08 20:21:31', '2019-11-08 20:21:31');
+(2, 'Kasubag Umum', '2019-11-08 20:20:57', '2019-11-08 20:20:57');
 
 -- --------------------------------------------------------
 
@@ -65,6 +64,34 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2018_06_17_070037_create_anggotas_table', 1),
 (3, '2018_06_17_130244_create_bukus_table', 1),
 (4, '2018_06_18_014155_create_transaksis_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suratkeluar`
+--
+
+CREATE TABLE `suratkeluar` (
+  `id` int(11) NOT NULL,
+  `nomor_surat` varchar(50) NOT NULL,
+  `sifat_surat` varchar(50) NOT NULL,
+  `lampiran` varchar(50) NOT NULL,
+  `hal` varchar(50) NOT NULL,
+  `tujuan_surat` varchar(50) NOT NULL,
+  `tempat_tujuan` text NOT NULL,
+  `alamat_tujuan` text NOT NULL,
+  `isi_surat` text NOT NULL,
+  `tebusan` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `suratkeluar`
+--
+
+INSERT INTO `suratkeluar` (`id`, `nomor_surat`, `sifat_surat`, `lampiran`, `hal`, `tujuan_surat`, `tempat_tujuan`, `alamat_tujuan`, `isi_surat`, `tebusan`, `created_at`, `updated_at`) VALUES
+(5, 'No : 01.001/SMK-AI/VIII/2017', 'Penting', '-', 'Sangat Penting', 'Dekan Fakultas Sains  dan Teknologi', 'Universitas Islam Negeri Sultan Syarif Kasim Riau', 'Pekanbaru', 'Surat Undangan', '-', '2019-11-17 08:19:38', '2019-11-17 08:19:38');
 
 -- --------------------------------------------------------
 
@@ -116,7 +143,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `gambar`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Sekretaris', 'sekretaris', 'sekretaris@gmail.com', '$2y$10$7.s1Byv0VTJiDjgd/41sY.ulBsKQuQ44wf3xUSQ5GaaFZRpTnFjyW', '46927-2019-10-30-15-38-08.png', 'sekretaris', 'l1vJbino0ujeXmWrJIGSzBNVkNcqWvWFu0uwK8FCOaKOfHDNRMfVEhr8gTHq', '2019-04-25 01:02:24', '2019-10-30 09:06:55');
+(1, 'Sekretaris', 'sekretaris', 'sekretaris@gmail.com', '$2y$10$7.s1Byv0VTJiDjgd/41sY.ulBsKQuQ44wf3xUSQ5GaaFZRpTnFjyW', '46927-2019-10-30-15-38-08.png', 'sekretaris', 'l1vJbino0ujeXmWrJIGSzBNVkNcqWvWFu0uwK8FCOaKOfHDNRMfVEhr8gTHq', '2019-04-25 01:02:24', '2019-11-17 07:45:33');
 
 --
 -- Indexes for dumped tables
@@ -132,6 +159,12 @@ ALTER TABLE `disposisi`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `suratkeluar`
+--
+ALTER TABLE `suratkeluar`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -164,16 +197,22 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `suratkeluar`
+--
+ALTER TABLE `suratkeluar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `suratmasuk`
 --
 ALTER TABLE `suratmasuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
