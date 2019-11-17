@@ -40,12 +40,6 @@
                                 No Surat
                               </th>
                               <th>
-                                Jenis Surat
-                              </th>
-                              <th>
-                                Tgl Terima
-                              </th>
-                              <th>
                                 Action
                               </th>
                             </tr>
@@ -55,26 +49,16 @@
                             <tr>
                               <td>{{$data->nama_instansi}}</td>
                               <td>{{$data->no_surat}}</td>
-                              <td>{{$data->jenis_surat}}</td>
-                              <td>{{$data->tgl_terima}}</td>
                               <td>
-                               <div class="btn-group dropdown">
-                              <button type="button" class="btn btn-success dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                              </button>
-                              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                                <a class="dropdown-item" href="{{route('suratmasuk.edit', $data->id)}}"> Edit </a>
-                                 <a class="dropdown-item" href="{{route('suratmasuk.show', $data->id)}}"> Detail </a>
-                                <form action="{{ route('suratmasuk.destroy', $data->id) }}" class="pull-left"  method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> Delete
-                                </button>
-                              </form>
-                               
-                              </div>
-                            </div>
-                              </td>
+                                <button><a href="{{route('suratmasuk.edit', $data->id)}}"><i class="fa fa-edit btn btn-primary"></i></a></button>
+                                    <form action="{{ route('suratmasuk.destroy', $data->id) }}" class="pull-left"  method="post">
+                                  {{ csrf_field() }}
+                                  {{ method_field('delete') }}
+                                  <button onclick="return confirm('Anda yakin ingin menghapus data ini?')"> <i class="fa fa-trash btn btn-danger" ></i>
+                                  </button>
+                                </form>
+                                  <button><a href="{{route('suratmasuk.show', $data->id)}}"><i class="fa fa-search-plus btn btn-success"></i></a></button>
+                            </td>
                             </tr>
                           @endforeach
                           </tbody>

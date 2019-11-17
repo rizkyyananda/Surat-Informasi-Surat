@@ -63,7 +63,7 @@
                 </li>
                 -->
                  <li class="nav-item">
-                  <a class="nav-link" href="{{url('laporan/buku')}}">Surat Keluar</a>
+                  <a class="nav-link" href="{{route('suratkeluar.index')}}">Surat Keluar</a>
                 </li>
               </ul>
             </div>

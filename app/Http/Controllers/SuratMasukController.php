@@ -180,7 +180,7 @@ class SuratMasukController extends Controller
     public function destroy($id)
     {
         if(Auth::user()->id != $id) {
-            $user_data = Disposisi::findOrFail($id);
+            $user_data = SuratMasuk::findOrFail($id);
             $user_data->delete();
             Session::flash('message', 'Berhasil dihapus!');
             Session::flash('message_type', 'success');
@@ -188,6 +188,6 @@ class SuratMasukController extends Controller
             Session::flash('message', 'Akun anda sendiri tidak bisa dihapus!');
             Session::flash('message_type', 'danger');
         }
-        return redirect()->to('disposisi');
+        return redirect()->to('suratmasuk');
     }
 }
