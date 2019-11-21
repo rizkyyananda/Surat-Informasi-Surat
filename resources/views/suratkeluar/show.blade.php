@@ -101,7 +101,7 @@
 							  </tr>
 							</table>
                             <br>
-                            <a href="" class="btn btn-success">Download Surat</a>
+                            <a href=" {{ url('/unduh', $data->id) }}" class="btn btn-success">Download Surat</a>
 							</center>
                             </div>
                           </div>

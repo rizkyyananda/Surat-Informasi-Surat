@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13a2fd2ba2bfb972da21e34534d02538",
+    "content-hash": "e13cc891414efc2554f718ec9360435e",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1177,6 +1177,58 @@
                 "php"
             ],
             "time": "2019-02-16T20:54:15+00:00"
+        },
+        {
+            "name": "novay/laravel-word-template",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/novay/laravel-word-template.git",
+                "reference": "9d9423547456420bc9780040b27828022445d548"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/novay/laravel-word-template/zipball/9d9423547456420bc9780040b27828022445d548",
+                "reference": "9d9423547456420bc9780040b27828022445d548",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Novay\\WordTemplate\\WordTemplateServiceProvider"
+                    ],
+                    "aliases": {
+                        "WordTemplate": "Novay\\WordTemplate\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Novay\\WordTemplate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Noviyanto Rahmadi",
+                    "email": "novay@enterwind.com"
+                }
+            ],
+            "description": "Package Laravel untuk melakukan penggantian kata pada file menggunakan template dokumen (.rtf) yang sudah disediakan.",
+            "keywords": [
+                "export",
+                "laravel",
+                "rtf",
+                "word"
+            ],
+            "time": "2018-05-23T10:33:05+00:00"
         },
         {
             "name": "paragonie/random_compat",

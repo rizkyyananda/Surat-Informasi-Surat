@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use WordTemplate;
 
 class SuratKeluarController extends Controller
 {
@@ -81,6 +82,26 @@ class SuratKeluarController extends Controller
         Session::flash('message', 'Berhasil ditambahkan!');
         Session::flash('message_type', 'success');
         return redirect()->route('suratkeluar.index');
+
+    }
+     public function unduh($id)
+    {
+       $file = public_path("suratkeluar.rtf");
+        $data = SuratKeluar::findOrFail($id);
+        $array = array(
+            '[nomor]' => $data->nomor_surat,
+            '[sifat]' => $data->sifat_surat,
+            '[lampiran]' => $data->lampiran,
+            '[hal]' => $data->hal,
+            '[tanggal]' => date('d F Y'),
+            '[tujuan_surat]' => $data->tujuan_surat,
+            '[tempat_tujuan]' => $data->tempat_tujuan,
+            '[alamat_tujuan]' => $data->alamat_tujuan,
+            '[isi]' => $data->isi_surat,
+            '[tebusan]' => $data->tebusan,
+        );
+        $namafile = $data->nomor_surat.'.doc';
+        $dokumen =  WordTemplate::export($file, $array, $namafile);
 
     }
 

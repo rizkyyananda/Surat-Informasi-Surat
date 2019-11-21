@@ -18,4 +18,6 @@ Route::resource('user', 'UserController');
 Route::resource('disposisi', 'DisposisiController');
 Route::resource('suratmasuk', 'SuratMasukController');
 Route::resource('suratkeluar', 'SuratKeluarController');
+Route::get('/unduh/{id}', 'SuratKeluarController@unduh');
+
 
