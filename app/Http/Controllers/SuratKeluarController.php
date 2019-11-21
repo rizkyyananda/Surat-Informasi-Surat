@@ -10,6 +10,8 @@ use Auth;
 use DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use WordTemplate;
+use DateTimeZone;
+use DateTime;
 
 class SuratKeluarController extends Controller
 {
@@ -88,12 +90,15 @@ class SuratKeluarController extends Controller
     {
        $file = public_path("suratkeluar.rtf");
         $data = SuratKeluar::findOrFail($id);
+        $timezone = new DateTimeZone('Asia/Jakarta');
+        $date = new DateTime();
+        $date->setTimeZone($timezone);
         $array = array(
             '[nomor]' => $data->nomor_surat,
             '[sifat]' => $data->sifat_surat,
             '[lampiran]' => $data->lampiran,
             '[hal]' => $data->hal,
-            '[tanggal]' => date('d F Y'),
+            '[tanggal]' => $date->format('d F Y'),
             '[tujuan_surat]' => $data->tujuan_surat,
             '[tempat_tujuan]' => $data->tempat_tujuan,
             '[alamat_tujuan]' => $data->alamat_tujuan,
