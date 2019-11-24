@@ -2,7 +2,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('#table').DataTable({
-        "iDisplayLength": 50
+        "iDisplayLength": 10
       });
 
   } );
@@ -40,9 +40,6 @@
                               Username
                             </th>
                             <th>
-                              Email
-                            </th>
-                            <th>
                               Action
                             </th>
                           </tr>
@@ -64,9 +61,6 @@
                             <a href="{{route('user.show', $data->id)}}"> 
                             {{$data->username}}
                             </a>
-                            </td>
-                            <td>
-                              {{$data->email}}
                             </td>
                             <td>
                               <button><a href="{{route('user.edit', $data->id)}}"><i class="fa fa-edit btn btn-primary"></i></a></button>

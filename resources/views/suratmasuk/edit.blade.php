@@ -86,46 +86,122 @@
                                     <div class="col-md-12">
                                     
                                     <select class="form-control" name="disposisi" required="">
-                                   <?php
-                                    $level = Array("Kabag TU","Kabid Teknis");
-                                    foreach ($level as $kunci ) {
+                                   <!------Sekretaris---->
+                                    @if(Auth::user()->level == 'sekretaris')
+                                    <?php
+                                        $datas = array("Kepala Bbksda");
+                                        foreach($datas as $data){
                                     ?>
-                                     @if(Auth::user()->level == 'Kepala Bbksda')
-                                    <option value="{{$kunci}}">{{$kunci}}</option>
-                                    @endif
-                                    @endforech
-                                    <?php
-                                     }
-                                     ?>
-                                    <?php
-                                    $level = Array("Kepala Bbksda");
-                                    foreach ($level as $kunci ) {
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
                                     ?>
-                                     @if(Auth::user()->level == 'sekretaris')
-                                    <option value="{{$kunci}}">{{$kunci}}</option>
                                     @endif
-                                    @endforech
+                                    <!------Sekretaris---->
+
+                                     <!------Kepala Bbksda---->
+                                    @if(Auth::user()->level == 'Kepala Bbksda')
                                     <?php
-                                      }
-                                    $level = Array("Subag Umum","Subag Evaluasi dan Kehumasan","Subag Program dan Kerja Sama");
-                                    foreach ($level as $kunci ) {
+                                        $datas = array("Kabag TU","Kabid Teknis");
+                                        foreach($datas as $data){
                                     ?>
-                                     @if(Auth::user()->level == 'Kabag TU')
-                                    <option value="{{$kunci}}">{{$kunci}}</option>
-                                    @endif
-                                    @endforech
-                                    <?php
-                                     }
-                                    $level = Array("Pelayanan Masyarakat","Perencanaan, Perlindungan dan Pengawetan");
-                                    foreach ($level as $kunci ) {
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
                                     ?>
-                                     @if(Auth::user()->level == 'Kabid Teknis')
-                                    <option value="{{$kunci}}">{{$kunci}}</option>
                                     @endif
-                                    @endforech
+                                    <!------Kepala Bbksda---->
+
+                                    <!------Kepala Kabag TU---->
+                                    @if(Auth::user()->level == 'Kabag TU')
                                     <?php
-                                     }
-                                     ?>
+                                        $datas = array("Subag Umum","Subag Evaluasi & Kehumasan","Subag Program & Kerja Sama");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Kabag TU---->
+
+                                    <!------Kepala Subag Umum---->
+                                    @if(Auth::user()->level == 'Subag Umum')
+                                    <?php
+                                        $datas = array("Pj Umum");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Subag Umum---->
+
+                                    <!------Kepala Subag Evaluasi & Kehumasan---->
+                                    @if(Auth::user()->level == 'Subag Evaluasi & Kehumasan')
+                                    <?php
+                                        $datas = array("Pj Evaluasi & Kehumasan");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Subag Evaluasi & Kehumasan---->
+
+                                    <!------Kepala Subag Program & Kerja Sama---->
+                                    @if(Auth::user()->level == 'Subag Program & Kerja Sama')
+                                    <?php
+                                        $datas = array("Pj Program & Kerja Sama");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Subag Program & Kerja Sama---->
+
+                                    <!------Kepala Kabid Teknis---->
+                                    @if(Auth::user()->level == 'Kabid Teknis')
+                                    <?php
+                                        $datas = array("Subag P2","Subag P3");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Kabid Teknis---->
+
+                                    <!------Kepala Subag P2---->
+                                    @if(Auth::user()->level == 'Subag P2')
+                                    <?php
+                                        $datas = array("Pj P2");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Subag P2---->
+
+                                    <!------Kepala Subag P3---->
+                                    @if(Auth::user()->level == 'Subag P3')
+                                    <?php
+                                        $datas = array("Pj P3");
+                                        foreach($datas as $data){
+                                    ?>
+                                    <option value="{{$data}}">{{$data}}</option>
+                                    <?php 
+                                        }
+                                    ?>
+                                    @endif
+                                    <!------Kepala Subag P2---->
                                     </select>
 
                                     </div>

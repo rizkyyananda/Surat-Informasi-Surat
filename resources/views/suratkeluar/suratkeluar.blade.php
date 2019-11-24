@@ -14,7 +14,9 @@
     <div class="row">
 
       <div class="col-lg-2">
+         @if(Auth::user()->level == 'Pj Evaluasi & Kehumasan' || Auth::user()->level == 'PjP2' || Auth::user()->level == 'PjP3' || Auth::user()->level == 'Pj Program & Kerja Sama' || Auth::user()->level == 'Pj Umum')
         <a href="{{ route('suratkeluar.create') }}" class="btn btn-primary btn-rounded btn-fw"><i class="fa fa-plus"></i> Tambah Surat Keluar</a>
+        @endif
       </div>
       <div class="col-lg-12">
         @if (Session::has('message'))
@@ -46,6 +48,9 @@
                 </thead>
                 <tbody>
                   @foreach($datas as $data)
+                  <?php 
+                      if (Auth::user()->level == $data->disposisi || Auth::user()->level =='PjP2' || Auth::user()->level =='PjP3') {
+                     ?>
                   <tr>
                     <td><a href="{{ url('/review', $data->id) }}">{{$data->nomor_surat}}</a></td>
                     <td>{{$data->tujuan_surat}}</td>
@@ -60,6 +65,9 @@
                       <button><a href="{{route('suratkeluar.show', $data->id)}}"><i class="fa fa-search-plus btn btn-success"></i></a></button>
                     </td>
                   </tr>
+                     <?php
+                    }
+                    ?>
                   @endforeach
                 </tbody>
               </table>

@@ -101,7 +101,7 @@
                                 <select class="form-control" name="level" required="">
                                     <option value="">==Pilih Hak Akses==</option>
                                       <?php
-                                    $level = Array("Sekretaris","Kepala Bbksda","Staff","Kabag TU"," Pelayanan dan Permasyarakatan","Perencanaan,Perlindungan dan Pengawetan","Subag Umum","Evaluasi dan Kehumasan","Program dan Kerjasama","Kabid Teknis");
+                                    $level = Array("Sekretaris","Kepala Bbksda","Kabag TU","Kabid Teknis", "Subag Umum","Subag Evaluasi & Kehumasan","Subag Program & Kerja Sama","Subag P2","Subag P3","Pj Umum","Pj Evaluasi & Kehumasan","Pj Program & Kerja Sama","PjP2","PjP3");
                                     foreach ($level as $kunci ) {
                                     ?>
                                     <option value="{{$kunci}}">{{$kunci}}</option>

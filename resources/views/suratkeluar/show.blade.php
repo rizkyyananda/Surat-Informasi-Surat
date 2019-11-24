@@ -94,7 +94,7 @@
 							</table>
                             <br>
                               <center>
-                                @if(Auth::user()->level == 'Staff')
+                                @if(Auth::user()->level == 'PjP2' || Auth::user()->level == 'PjP3')
                             <a href=" {{ url('/unduh', $data->id) }}" class="btn btn-success">Download Surat</a>
                             @endif
                         </center>
