@@ -158,23 +158,15 @@ class SuratKeluarController extends Controller
     {
      $user_data = SuratKeluar::findOrFail($id);
 
-     $user_data->nama_instansi = $request->input('nama_instansi');
-     $user_data->no_surat = $request->input('no_surat');
-     $user_data->jenis_surat = $request->input('jenis_surat');
-     $user_data->tgl_terima = $request->input('tgl_terima');
-     if($request->file('gambar')) 
-     {
-        $file = $request->file('gambar');
-        $dt = Carbon::now();
-        $acak  = $file->getClientOriginalExtension();
-        $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
-        $request->file('gambar')->move("images/user", $fileName);
-        $user_data->gambar = $fileName;
-    }
-    $user_data->nama_pengirim = $request->input('nama_pengirim');
-    $user_data->disposisi = $request->input('disposisi');
-
-
+     $user_data->nomor_surat = $request->input('nomor_surat');
+     $user_data->sifat_surat = $request->input('sifat_surat');
+     $user_data->lampiran = $request->input('lampiran');
+     $user_data->hal = $request->input('hal');
+     $user_data->tujuan_surat = $request->input('tujuan_surat');
+     $user_data->tempat_tujuan = $request->input('tempat_tujuan');
+     $user_data->alamat_tujuan = $request->input('alamat_tujuan');
+     $user_data->isi_surat = $request->input('isi_surat');
+     $user_data->tebusan = $request->input('tebusan');
     $user_data->update();
     Session::flash('message', 'Berhasil diubah!');
     Session::flash('message_type', 'success');

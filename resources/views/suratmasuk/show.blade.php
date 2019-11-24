@@ -20,19 +20,6 @@
                     })
                 })
 
-
-        // var check = function() {
-        //   if (document.getElementById('password').value ==
-        //     document.getElementById('confirm_password').value) {
-        //     document.getElementById('submit').disabled = false;
-        //     document.getElementById('message').style.color = 'green';
-        //     document.getElementById('message').innerHTML = 'matching';
-        //   } else {
-        //     document.getElementById('submit').disabled = true;
-        //     document.getElementById('message').style.color = 'red';
-        //     document.getElementById('message').innerHTML = 'not matching';
-        //   }
-        // }
             </script>
         @stop
 
@@ -43,17 +30,16 @@
 
             {{ csrf_field() }}
             {{ method_field('put') }}
-        <div class="row">
+            <div class="row">
                     <div class="col-md-12 d-flex align-items-stretch grid-margin">
                       <div class="row flex-grow">
                         <div class="col-12">
                           <div class="card">
                             <div class="card-body">
-                              <h4 class="card-title">Edit Data Surat Masuk</h4>
-                              <center>
-							  <table class="col-md-6"> 
+                              <h4 class="card-title">Detail Surat Masuk</h4>
+							  <table class="col-md-12"> 
 							  <tr>
-							    <td>Nama Instansi</td>
+							    <td width="150px;">Nama Instansi</td>
 							     <td>:</td>
 							    <td>{{ $data->nama_instansi }}</td>
 							  </tr>
@@ -68,11 +54,6 @@
 							    <td>{{ $data->tgl_terima }}</td>
 							  </tr>
 							  <tr>
-							    <td>Jenis Surat</td>
-							    <td>:</td>
-							    <td>{{ $data->jenis_surat }}</td>
-							  </tr>
-							  <tr>
 							    <td>Nama Pengirim</td>
 							    <td>:</td>
 							    <td>{{ $data->nama_pengirim }}</td>
@@ -83,35 +64,72 @@
 							    <td>{{ $data->disposisi }}</td>
 							  </tr>
 							  </tr>
-							  <tr>
-							    <td>Gambar</td>
-							    <td>:</td>
-							    <td>
-							    	<script language="javascript" type="text/javascript">
- <!--
-
- document.getElementById('foo').addEventListener('click', function (e) {
-
-var img = document.createElement('img');
-
-img.setAttribute('src', 'http://blog.stackoverflow.com/wp-content/uploads/stackoverflow-logo-300.png');
-
-e.target.appendChild(img);
-});
-
-  // -->
- </script>
-
-							    	<a href="{{ asset('images/user/'.$data->gambar) }}"></a>
-							    	<img class="product" width="200" height="200" .click() @if($data->gambar) src="{{ asset('images/user/'.$data->gambar) }}" @endif />
-							    </td>
-							  </tr>
+                               <tr>
+                                <td>Isi Disposisi</td>
+                                <td>:</td>
+                                <td>{{ $data->isi_disposisi }}</td>
+                              </tr>
 							</table>
-							</center>
                             </div>
                           </div>
                         </div>
-                      </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-12 d-flex align-items-stretch grid-margin">
+                      <div class="row flex-grow">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="card-body">
+                                <center>
+                              <table class="col-md-12"> 
+                              <tr>
+                                <td>Gambar</td>
+                                 <tr>
+                                <style type="text/css">
+                                    input[type=checkbox] {
+                                  display: none;
+                                }
+
+                                .container img {
+                                  margin-left: 150%;
+                                  transition: transform 0.30s ease;
+                                  cursor: zoom-in;
+                                }
+
+                                td [type=checkbox]:checked ~ label > img {
+                                  transform: scale(4);
+                                  cursor: zoom-out;
+                                }
+                                    </style>
+                                <center><td  class="container" >
+                                  <input type="checkbox" id="zoomCheck">
+                                  <label for="zoomCheck">
+                                    <a href="{{ asset('images/user/'.$data->gambar) }}"></a>
+                                    <img class="product" width="200" height="200" .click() @if($data->gambar) src="{{ asset('images/user/'.$data->gambar) }}" @endif />
+
+                                    </label>
+                                </td>
+                              </tr>
+                            </table>
+                            </center>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                          </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endsection

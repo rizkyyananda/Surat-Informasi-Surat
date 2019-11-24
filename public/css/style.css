@@ -15622,6 +15622,32 @@ pre {
     color: #ffffff;
     text-align: center; }
 
+/* Cards */
+.gambar {
+  border: 0;
+  border-radius: 2px; }
+  .gambar .gambar-body {
+    padding: 1.88rem 1.81rem; }
+    .gambar .gambar-body + .gambar-body {
+      padding-top: 0; }
+  .gambar.gambar-outline-success {
+    border: 1px solid #00ce68; }
+  .gambar.gambar-outline-primary {
+    border: 1px solid #308ee0; }
+  .gambar.gambar-outline-warning {
+    border: 1px solid #ffaf00; }
+  .gambar.gambar-outline-danger {
+    border: 1px solid #e65251; }
+  .gambar.gambar-rounded {
+    border-radius: 5px; }
+  .gambar.gambar-faded {
+    background: #b5b0b2;
+    border-color: #b5b0b2; }
+  .gambar.gambar-circle-progress {
+    color: #ffffff;
+    text-align: center; }
+
+
 .card-inverse-primary {
   background: rgba(48, 142, 224, 0.2);
   border: 1px solid #2c83ce;

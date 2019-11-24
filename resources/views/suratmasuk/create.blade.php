@@ -63,24 +63,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
-                                <label for="level" class="col-md-4 control-label">Jenis Surat</label>
-                                <div class="col-md-12">
-                                  
-                                <select class="form-control" name="jenis_surat" required="">
-                                    <option value="">==Pilih Jenis Surat==</option>
-                                      <?php
-                                    $level = Array("Surat Masuk","Surat Keluar");
-                                    foreach ($level as $kunci ) {
-                                    ?>
-                                    <option value="{{$kunci}}">{{$kunci}}</option>
-                                    <?php
-                                }
-                                ?>
-                                </select>
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">Tanggal Terima</label>
                                 <div class="col-md-12">
@@ -120,6 +102,13 @@
 
                                 </div>
                             </div>
+
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Isi Disposisi</label>
+                            <div class="col-md-12">
+                                <textarea id="isi_disposisi" type="textarea" class="form-control" name="isi_disposisi" value="{{ old('isi_disposisi') }}" required></textarea> 
+                            </div>
+                        </div>
                                     
                             <button type="submit" class="btn btn-primary" id="submit">
                                         Tambah

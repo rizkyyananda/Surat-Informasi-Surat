@@ -19,5 +19,8 @@ Route::resource('disposisi', 'DisposisiController');
 Route::resource('suratmasuk', 'SuratMasukController');
 Route::resource('suratkeluar', 'SuratKeluarController');
 Route::get('/unduh/{id}', 'SuratKeluarController@unduh');
+Route::get('/dispo/{id}', 'SuratMasukController@dispo');
+Route::get('/updatedisposisi/{id}', 'SuratMasukController@updatedisposisi');
+
 
 

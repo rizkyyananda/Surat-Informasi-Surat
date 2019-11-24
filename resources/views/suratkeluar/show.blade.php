@@ -20,19 +20,6 @@
                     })
                 })
 
-
-        // var check = function() {
-        //   if (document.getElementById('password').value ==
-        //     document.getElementById('confirm_password').value) {
-        //     document.getElementById('submit').disabled = false;
-        //     document.getElementById('message').style.color = 'green';
-        //     document.getElementById('message').innerHTML = 'matching';
-        //   } else {
-        //     document.getElementById('submit').disabled = true;
-        //     document.getElementById('message').style.color = 'red';
-        //     document.getElementById('message').innerHTML = 'not matching';
-        //   }
-        // }
             </script>
         @stop
 
@@ -49,10 +36,9 @@
                         <div class="col-12">
                           <div class="card">
                         <div class="card-body">
-                              <center>
-							  <table class="col-md-6"> 
+							  <table class="col-md-12"> 
 							  <tr>
-							    <td>Nomor Surat</td>
+							    <td width="150px;">Nomor Surat</td>
 							     <td>:</td>
 							    <td>{{ $data->nomor_surat }}</td>
 							  </tr>
@@ -86,10 +72,11 @@
                                 <td>:</td>
                                 <td>{{ $data->alamat_tujuan }}</td>
                               </tr>
+                              <br>
                             <tr>
                                 <td>Isi Surat</td>
                                 <td>:</td>
-                                <td>{{ $data->isi_surat }}</td>
+                                <td style="text-align: justify;">{{ $data->isi_surat }}</td>
                               </tr>
                                <tr>
                                 <td>Tebusan</td>
@@ -101,8 +88,10 @@
 							  </tr>
 							</table>
                             <br>
+
+                              <center>
                             <a href=" {{ url('/unduh', $data->id) }}" class="btn btn-success">Download Surat</a>
-							</center>
+                        </center>
                             </div>
                           </div>
                         </div>

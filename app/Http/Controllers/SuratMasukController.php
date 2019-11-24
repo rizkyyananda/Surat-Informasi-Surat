@@ -66,10 +66,10 @@ class SuratMasukController extends Controller
         $this->validate($request, [
             'nama_instansi' => 'required|string|max:255',
             'no_surat' => 'required|string|max:255',
-            'jenis_surat' => 'required|string|max:255',
             'tgl_terima' => 'required|string|max:255',
             'nama_pengirim' => 'required|string|max:255',
             'disposisi' => 'required|string|max:255',
+            'isi_disposisi'=> 'required|string|max:255'
                 
         ]);
 
@@ -87,10 +87,10 @@ class SuratMasukController extends Controller
         SuratMasuk::create([
             'nama_instansi' => $request->input('nama_instansi'),
             'no_surat' => $request->input('no_surat'),
-            'jenis_surat' => $request->input('jenis_surat'),
             'tgl_terima' => $request->input('tgl_terima'),
             'nama_pengirim' => $request->input('nama_pengirim'),
             'disposisi' => $request->input('disposisi'),
+            'isi_disposisi'=>$request->input('isi_disposisi'),
             'gambar' => $gambar
         ]);
 
@@ -137,6 +137,29 @@ class SuratMasukController extends Controller
         return view('suratmasuk.edit',  compact('data'), compact('datas'));
     }
 
+     public function dispo($id)
+    {   
+       
+        $data = SuratMasuk::findOrFail($id);
+
+        $datas = Disposisi::get();
+        return view('suratmasuk.disposisi',  compact('data'), compact('datas'));
+    }
+
+     public function updatedisposisi($id)
+    {   
+       
+        $user_data = SuratMasuk::findOrFail($id);
+        $user_data->disposisi = $request->input('disposisi');
+        $user_data->isi_disposisi = $request->input('isi_disposisi');
+
+
+        $user_data->update();
+        Session::flash('message', 'Berhasil diubah!');
+        Session::flash('message_type', 'success');
+        return redirect()->to('suratmasuk');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -150,7 +173,6 @@ class SuratMasukController extends Controller
 
         $user_data->nama_instansi = $request->input('nama_instansi');
         $user_data->no_surat = $request->input('no_surat');
-        $user_data->jenis_surat = $request->input('jenis_surat');
         $user_data->tgl_terima = $request->input('tgl_terima');
          if($request->file('gambar')) 
         {
@@ -163,6 +185,7 @@ class SuratMasukController extends Controller
         }
         $user_data->nama_pengirim = $request->input('nama_pengirim');
         $user_data->disposisi = $request->input('disposisi');
+        $user_data->isi_disposisi = $request->input('isi_disposisi');
 
 
         $user_data->update();
