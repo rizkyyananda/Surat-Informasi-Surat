@@ -19,20 +19,6 @@
                         return false
                     })
                 })
-
-
-        // var check = function() {
-        //   if (document.getElementById('password').value ==
-        //     document.getElementById('confirm_password').value) {
-        //     document.getElementById('submit').disabled = false;
-        //     document.getElementById('message').style.color = 'green';
-        //     document.getElementById('message').innerHTML = 'matching';
-        //   } else {
-        //     document.getElementById('submit').disabled = true;
-        //     document.getElementById('message').style.color = 'red';
-        //     document.getElementById('message').innerHTML = 'not matching';
-        //   }
-        // }
             </script>
         @stop
 
@@ -50,74 +36,41 @@
                           <div class="card">
                             <div class="card-body">
                               <h4 class="card-title">Edit Data Surat Keluar</h4>
-                              
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Nomor Surat Isntansi</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="nomor_surat" value="{{ $data->nomor_surat }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="nomor_surat" value="{{ $data->nomor_surat }}" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Sifat Surat</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="sifat_surat" value="{{ $data->sifat_surat }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="sifat_surat" value="{{ $data->sifat_surat }}" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Lampiran</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="lampiran" value="{{ $data->lampiran }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="lampiran" value="{{ $data->lampiran }}" required>
                                     </div>
-                                </div>
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Hal</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="hal" value="{{ $data->hal }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="hal" value="{{ $data->hal }}" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Tujuan Surat</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="tujuan_surat" value="{{ $data->nomor_surat }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="tujuan_surat" value="{{ $data->nomor_surat }}" required>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Tempat Tujuan</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="tempat_tujuan" value="{{ $data->tempat_tujuan }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="tempat_tujuan" value="{{ $data->tempat_tujuan }}" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Alamat Tujuan</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="alamat_tujuan" value="{{ $data->alamat_tujuan }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="alamat_tujuan" value="{{ $data->alamat_tujuan }}" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Isi Surat</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="isi_surat" value="{{ $data->isi_surat }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="isi_surat" value="{{ $data->isi_surat }}" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Tebusan</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="tebusan" value="{{ $data->tebusan }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="tebusan" value="{{ $data->tebusan }}" required>
                                     </div>
-                                </div>
+                                    @if(Auth::user()->level != 'Staff')
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-4 control-label">Review</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="review" value="{{ $data->tebusan }}" required>
+                                        <input id="nama_instansi" type="text" class="form-control" name="review" value="{{ $data->review }}" required>
                                     </div>
                                 </div>
+                                @endif
 
                                 <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
                                     <label for="level" class="col-md-4 control-label">Disposisi</label>
@@ -149,7 +102,7 @@
                                     $level = Array("Subag Umum","Subag Evaluasi dan Kehumasan","Subag Program dan Kerja Sama");
                                     foreach ($level as $kunci ) {
                                     ?>
-                                     @if(Auth::user()->level == 'Kabag Tu')
+                                     @if(Auth::user()->level == 'Kabag TU')
                                     <option value="{{$kunci}}">{{$kunci}}</option>
                                     @endif
                                     @endforech
@@ -164,11 +117,22 @@
                                     @endforech
                                     <?php
                                      }
+
+                                    $level = Array("Subag");
+                                    foreach ($level as $kunci ) {
+                                    ?>
+                                     @if(Auth::user()->level == 'Staff')
+                                    <option value="{{$kunci}}">{{$kunci}}</option>
+                                    @endif
+                                    @endforech
+                                    <?php
+                                     }
                                      ?>
                                     </select>
 
                                     </div>
-                                </div>        
+                                </div>
+
                                 <button type="submit" class="btn btn-primary" id="submit">
                                             Tambah
                                 </button>

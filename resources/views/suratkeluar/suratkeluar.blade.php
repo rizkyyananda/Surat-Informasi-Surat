@@ -47,7 +47,7 @@
                 <tbody>
                   @foreach($datas as $data)
                   <tr>
-                    <td>{{$data->nomor_surat}}</td>
+                    <td><a href="{{ url('/review', $data->id) }}">{{$data->nomor_surat}}</a></td>
                     <td>{{$data->tujuan_surat}}</td>
                     <td>
                       <button><a href="{{route('suratkeluar.edit', $data->id)}}"><i class="fa fa-edit btn btn-primary"></i></a></button>

@@ -67,31 +67,38 @@
 							    <td>:</td>
 							    <td>{{ $data->tempat_tujuan }}</td>
 							  </tr>
-                               <tr>
-                                <td>Alamat Tujuan</td>
-                                <td>:</td>
-                                <td>{{ $data->alamat_tujuan }}</td>
-                              </tr>
-                              <br>
-                            <tr>
-                                <td>Isi Surat</td>
-                                <td>:</td>
-                                <td style="text-align: justify;">{{ $data->isi_surat }}</td>
-                              </tr>
-                               <tr>
-                                <td>Tebusan</td>
-                                <td>:</td>
-                                <td>{{ $data->tebusan }}</td>
-                              </tr>
+                <tr>
+                <td>Alamat Tujuan</td>
+                <td>:</td>
+                <td>{{ $data->alamat_tujuan }}</td>
+                </tr>
+                <br>
+                  <tr>
+                    <td>Isi Surat</td>
+                    <td>:</td>
+                    <td style="text-align: justify;">{{ $data->isi_surat }}</td>
+                  </tr>
+                  <tr>
+                    <td>Tebusan</td>
+                    <td>:</td>
+                    <td>{{ $data->tebusan }}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: red;">Review</td>
+                    <td>:</td>
+                    <td style="color: red;">{{ $data->review }}</td>
+                  </tr>
 							  </tr>
 							  <tr>
 							  </tr>
 							</table>
                             <br>
-
                               <center>
+                                @if(Auth::user()->level == 'Staff')
                             <a href=" {{ url('/unduh', $data->id) }}" class="btn btn-success">Download Surat</a>
+                            @endif
                         </center>
+                        <a href="{{route('suratkeluar.index')}}" class="btn btn-light pull-right">Back</a>
                             </div>
                           </div>
                         </div>

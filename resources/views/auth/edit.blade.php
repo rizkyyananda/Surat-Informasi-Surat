@@ -93,17 +93,23 @@
                                     <input type="file" class="uploads form-control" style="margin-top: 20px;" name="gambar">
                                 </div>
                             </div>
-                            @if(Auth::user()->level == 'admin')
-                             <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                           <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
                                 <label for="level" class="col-md-4 control-label">Level</label>
                                 <div class="col-md-6">
+                                  
                                 <select class="form-control" name="level" required="">
-                                    <option value="admin" @if($data->level == 'admin') selected @endif>Admin</option>
-                                    <option value="user" @if($data->level == 'user') selected @endif>User</option>
+                                    <option value="">==Pilih Hak Akses==</option>
+                                      <?php
+                                    $level = Array("Sekretaris","Kepala Bbksda","Staff","Kabag TU"," Pelayanan dan Permasyarakatan","Perencanaan,Perlindungan dan Pengawetan","Subag Umum","Evaluasi dan Kehumasan","Program dan Kerjasama","Kabid Teknis");
+                                    foreach ($level as $kunci ) {
+                                    ?>
+                                    <option value="{{$kunci}}">{{$kunci}}</option>
+                                    <?php
+                                }
+                                ?>
                                 </select>
                                 </div>
                             </div>
-                            @endif
 
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

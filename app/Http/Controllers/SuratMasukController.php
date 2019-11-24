@@ -28,6 +28,11 @@ class SuratMasukController extends Controller
     public function index()
     {
 
+         if(Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+
         $datas = SuratMasuk::get();
         return view('suratmasuk.suratmasuk', compact('datas'));
     }
@@ -43,8 +48,7 @@ class SuratMasukController extends Controller
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
-        $datas = Disposisi::get();
-        return view('suratmasuk.create', compact('datas'));
+        return view('suratmasuk.create');
     }
 
     /**
@@ -141,9 +145,11 @@ class SuratMasukController extends Controller
     {   
        
         $data = SuratMasuk::findOrFail($id);
-
-        $datas = Disposisi::get();
-        return view('suratmasuk.disposisi',  compact('data'), compact('datas'));
+          if(Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+        return view('suratmasuk.disposisi',  compact('data'));
     }
 
      public function updatedisposisi($id)

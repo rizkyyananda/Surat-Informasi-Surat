@@ -27,7 +27,7 @@
       <span class="menu-title">Home</span>
     </a>
   </li>
-  @if(Auth::user()->level == 'sekretaris')
+  @if(Auth::user()->level == 'Kepala Bbksda' || Auth::user()->level == 'sekretaris')
   <li class="nav-item {{ setActive(['anggota*', 'buku*', 'user*']) }}">
     <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
       <i class="menu-icon mdi mdi-content-copy"></i>

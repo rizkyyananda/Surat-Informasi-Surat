@@ -56,19 +56,6 @@ class SuratKeluarController extends Controller
      */
     public function store(Request $request)
     {
-
-        // $this->validate($request, [
-        //     'nomor_surat' => 'required|string|max:255',
-        //     'sifat_surat' => 'required|string|max:255',
-        //     'lampiran' => 'required|string|max:255',
-        //     'hal' => 'required|string|max:255',
-        //     'tujuan_surat' => 'required|string|max:255',
-        //     'tempat_tujuan' => 'required|string|max:255',
-        //     'alamat_tujuan' => 'required|string|max:255',
-        //     'isi_surat' => 'required|string|max:255',
-        //     'tebusan' => 'required|string|max:255',
-
-        // ]);
         SuratKeluar::create([
             'nomor_surat' => $request->input('nomor_surat'),
             'sifat_surat' => $request->input('sifat_surat'),
@@ -78,7 +65,9 @@ class SuratKeluarController extends Controller
             'tempat_tujuan' => $request->input('tempat_tujuan'),
             'alamat_tujuan' => $request->input('alamat_tujuan'),
             'isi_surat' => $request->input('isi_surat'),
-            'tebusan' => $request->input('tebusan')
+            'tebusan' => $request->input('tebusan'),
+            'review' => $request->input('review'),
+            'disposisi' => $request->input('disposisi')
         ]);
 
         Session::flash('message', 'Berhasil ditambahkan!');
@@ -136,6 +125,16 @@ class SuratKeluarController extends Controller
 
         return view('suratkeluar.show', compact('data'));
     }
+    public function review($id)
+    {   
+       
+        $data = SuratKeluar::findOrFail($id);
+          if(Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+        return view('suratkeluar.review',  compact('data'));
+    }
 
     public function edit($id)
     {   
@@ -167,10 +166,12 @@ class SuratKeluarController extends Controller
      $user_data->alamat_tujuan = $request->input('alamat_tujuan');
      $user_data->isi_surat = $request->input('isi_surat');
      $user_data->tebusan = $request->input('tebusan');
-    $user_data->update();
-    Session::flash('message', 'Berhasil diubah!');
-    Session::flash('message_type', 'success');
-    return redirect()->to('suratkeluar');
+     $user_data->review = $request->input('review');
+     $user_data->disposisi = $request->input('disposisi');
+     $user_data->update();
+     Session::flash('message', 'Berhasil diubah!');
+     Session::flash('message_type', 'success');
+     return redirect()->to('suratkeluar');
 }
 
     /**

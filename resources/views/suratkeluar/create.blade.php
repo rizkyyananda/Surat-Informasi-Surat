@@ -100,6 +100,64 @@
                             <input id="tebusan" type="text" class="form-control" name="tebusan" value="{{ old('tebusan') }}" required>
                         </div>
                     </div>
+
+                <!--     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="name" class="col-md-4 control-label">Review</label>
+                                    <div class="col-md-12">
+                                        <input id="nama_instansi" type="text" class="form-control" name="review" value="" required>
+                                    </div>
+                    </div> -->
+
+                                 <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                                    <label for="level" class="col-md-4 control-label">Disposisi</label>
+
+                                    <div class="col-md-12">
+                                    
+                                    <select class="form-control" name="disposisi" required="">
+                                   <?php
+                                    $level = Array("Kabag TU","Kabid Teknis");
+                                    foreach ($level as $kunci ) {
+                                    ?>
+                                     @if(Auth::user()->level == 'Kepala Bbksda')
+                                    <option value="{{$kunci}}">{{$kunci}}</option>
+                                    @endif
+                                    @endforech
+                                    <?php
+                                     }
+                                     ?>
+                                    <?php
+                                    $level = Array("Kepala Bbksda");
+                                    foreach ($level as $kunci ) {
+                                    ?>
+                                     @if(Auth::user()->level == 'sekretaris')
+                                    <option value="{{$kunci}}">{{$kunci}}</option>
+                                    @endif
+                                    @endforech
+                                    <?php
+                                      }
+                                    $level = Array("Subag Umum","Subag Evaluasi dan Kehumasan","Subag Program dan Kerja Sama");
+                                    foreach ($level as $kunci ) {
+                                    ?>
+                                     @if(Auth::user()->level == 'Kabag TU')
+                                    <option value="{{$kunci}}">{{$kunci}}</option>
+                                    @endif
+                                    @endforech
+                                    <?php
+                                     }
+                                    $level = Array("Pelayanan Masyarakat","Perencanaan, Perlindungan dan Pengawetan");
+                                    foreach ($level as $kunci ) {
+                                    ?>
+                                     @if(Auth::user()->level == 'Kabid Teknis')
+                                    <option value="{{$kunci}}">{{$kunci}}</option>
+                                    @endif
+                                    @endforech
+                                    <?php
+                                     }
+                                     ?>
+                                    </select>
+
+                                    </div>
+                                </div>
                     
                     <button type="submit" class="btn btn-primary" id="submit">
                         Tambah

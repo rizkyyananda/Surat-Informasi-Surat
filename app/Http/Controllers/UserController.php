@@ -31,6 +31,7 @@ class UserController extends Controller
         }
 
         $datas = User::get();
+        
         return view('auth.user', compact('datas'));
     }
 
