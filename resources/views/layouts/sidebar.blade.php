@@ -39,9 +39,9 @@
        <li class="nav-item">
         <a class="nav-link {{ setActive(['user*']) }}" href="{{route('user.index')}}">Data User</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link {{ setActive(['user*']) }}" href="{{route('disposisi.index')}}">Data Disposisi</a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </li>
