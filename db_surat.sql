@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2019 at 04:48 PM
+-- Generation Time: Nov 24, 2019 at 08:36 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -82,6 +82,8 @@ CREATE TABLE `suratkeluar` (
   `alamat_tujuan` text NOT NULL,
   `isi_surat` text NOT NULL,
   `tebusan` text NOT NULL,
+  `review` text,
+  `disposisi` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -90,8 +92,9 @@ CREATE TABLE `suratkeluar` (
 -- Dumping data for table `suratkeluar`
 --
 
-INSERT INTO `suratkeluar` (`id`, `nomor_surat`, `sifat_surat`, `lampiran`, `hal`, `tujuan_surat`, `tempat_tujuan`, `alamat_tujuan`, `isi_surat`, `tebusan`, `created_at`, `updated_at`) VALUES
-(5, 'No : 01.001/SMK-AI/VIII/2017', 'Penting', '-', 'Sangat Penting', 'Dekan Fakultas Sains  dan Teknologi', 'Universitas Islam Negeri Sultan Syarif Kasim Riau', 'Pekanbaru', 'Surat Undangan', '-', '2019-11-17 08:19:38', '2019-11-17 08:19:38');
+INSERT INTO `suratkeluar` (`id`, `nomor_surat`, `sifat_surat`, `lampiran`, `hal`, `tujuan_surat`, `tempat_tujuan`, `alamat_tujuan`, `isi_surat`, `tebusan`, `review`, `disposisi`, `created_at`, `updated_at`) VALUES
+(5, 'No : 01.001/SMK-AI/VIII/2017', 'Penting', '-', 'Sangat Penting', 'Dekan Fakultas Sains  dan Teknologi', 'Universitas Islam Negeri Sultan Syarif Kasim Riau', 'Pekanbaru', 'Sehubungan dengan akan berakhirnya kalender akademik semester ganjil SMK Memajukan Masa Depan Tahun Pelajaran 2017/2018, maka akan dilaksanakan kegiatan Penilaian akhir (PAS) semester ganjil pada tanggal 31 oktober 2018 sampai dengan 8 November 2018. Sehubungan dengan hal tersebut diatas, maka dengan ini siswa diwajibkan membayar biaya administrasi kegiatan sebesar Rp. 50.000 (Lima Puluh Ribu Rupiah). Pembayaran dapat dilakukan melalui transfer Rekening Bank MNB dengan nomor rekening xxxx paling lambat 30 Oktober 2018.', '-', NULL, '', '2019-11-21 17:22:44', '2019-11-17 08:19:38'),
+(8, '110928', 'Penting', '-', 'sangat Penting', '110928', 'Pekanbaru', 'Sudirman', 'surat Keluar', '-', 'perbaiki typo', 'Kepala Bbksda', '2019-11-24 07:02:40', '2019-11-24 00:02:40');
 
 -- --------------------------------------------------------
 
@@ -103,11 +106,11 @@ CREATE TABLE `suratmasuk` (
   `id` int(11) NOT NULL,
   `nama_instansi` varchar(50) NOT NULL,
   `no_surat` varchar(50) NOT NULL,
-  `jenis_surat` varchar(50) NOT NULL,
   `tgl_terima` date NOT NULL,
   `gambar` text,
   `nama_pengirim` varchar(50) NOT NULL,
   `disposisi` varchar(20) NOT NULL,
+  `isi_disposisi` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -116,8 +119,8 @@ CREATE TABLE `suratmasuk` (
 -- Dumping data for table `suratmasuk`
 --
 
-INSERT INTO `suratmasuk` (`id`, `nama_instansi`, `no_surat`, `jenis_surat`, `tgl_terima`, `gambar`, `nama_pengirim`, `disposisi`, `created_at`, `updated_at`) VALUES
-(7, 'PT. Sprint Asia Teknologi', 'No : 01.001/SMK-AI/VIII/2017', 'Surat Masuk', '2019-11-09', '12733-2019-11-09-03-08-10.png', 'Rizky', 'Kepala Balai', '2019-11-09 03:54:33', '2019-11-08 20:54:33');
+INSERT INTO `suratmasuk` (`id`, `nama_instansi`, `no_surat`, `tgl_terima`, `gambar`, `nama_pengirim`, `disposisi`, `isi_disposisi`, `created_at`, `updated_at`) VALUES
+(8, 'PT. Sprint Asia Teknologi', '1113131', '2019-11-16', '89531-2019-11-23-05-46-12.jpeg', 'Rizky', 'Kabag TU', 'Disposisi', '2019-11-24 04:19:36', '2019-11-23 21:19:36');
 
 -- --------------------------------------------------------
 
@@ -143,7 +146,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `gambar`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Sekretaris', 'sekretaris', 'sekretaris@gmail.com', '$2y$10$7.s1Byv0VTJiDjgd/41sY.ulBsKQuQ44wf3xUSQ5GaaFZRpTnFjyW', '46927-2019-10-30-15-38-08.png', 'sekretaris', 'l1vJbino0ujeXmWrJIGSzBNVkNcqWvWFu0uwK8FCOaKOfHDNRMfVEhr8gTHq', '2019-04-25 01:02:24', '2019-11-17 07:45:33');
+(1, 'Sekretaris', 'sekretaris', 'sekretaris@gmail.com', '$2y$10$7.s1Byv0VTJiDjgd/41sY.ulBsKQuQ44wf3xUSQ5GaaFZRpTnFjyW', '46927-2019-10-30-15-38-08.png', 'sekretaris', 'Dp7TQDU9NlRHj1Uc1ot7BoTmjHpgJD2UlGlWDPvp9cEmK5Y9VQmys3k7eM7j', '2019-04-25 01:02:24', '2019-11-17 07:45:33'),
+(2, 'Kepala Balai', 'kepalabalai', 'kepalabalai@gmail.com', '$2y$10$meV1uQQNGhqie/OROgNkqO3.SAqz4LfTSDHdKmtY02wa33u7DC45W', '46549-2019-11-23-06-02-16.png', 'Kepala Bbksda', '1xlL2z4IBDvJxchARpD2PSg0HMyQtD02QDPytraxmANEY2MatH0hXBXCmdOk', '2019-11-22 23:02:16', '2019-11-22 23:02:16'),
+(3, 'Tu', 'tu', 'tu@gmail.com', '$2y$10$yIKzkqgFyDG/QliqvjOxn.Ap3AR5NN5hn0lhijoBQayyqQ3IVVSg.', '90891-2019-11-24-03-21-44.png', 'Kabag TU', 'SHsQsKr1kcuI4dnF6cLqZfoFVbPJ9FQssFwZzD2CB8NMGNk0B23nF5KlO6oA', '2019-11-23 20:21:44', '2019-11-23 20:21:44'),
+(4, 'Oke Punya', 'staff1', 'staff1@gmail.com', '$2y$10$PuRnvW9X35f25DJeFHvKM.z1fVlla/NDBJKuRJeOiZazZ9k41wwhW', '21600-2019-11-24-07-13-46.jpg', 'Staff', 'g2lg5r4NCxIc61IjhZXcuegHsnRdeu5goMBJ4ejyZ5fG8WOp73t9uo9yDLMY', '2019-11-24 00:13:47', '2019-11-24 00:17:01'),
+(5, 'saya punya', 'pelayanan', 'pelyanan@gmail.com', '$2y$10$O.r/h4CuGX2sFiECD0rAUejlSZCpdIElAMZO.tl2lqZ1PcF4MmKMm', '54879-2019-11-24-07-26-13.jpg', 'Pelayanan dan Permasyarakatan', NULL, '2019-11-24 00:26:13', '2019-11-24 00:26:13');
 
 --
 -- Indexes for dumped tables
@@ -188,7 +195,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `disposisi`
 --
 ALTER TABLE `disposisi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -200,7 +207,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `suratkeluar`
 --
 ALTER TABLE `suratkeluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `suratmasuk`
@@ -212,7 +219,7 @@ ALTER TABLE `suratmasuk`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
