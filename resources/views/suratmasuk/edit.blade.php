@@ -80,6 +80,12 @@
                                         <input id="pengirim" type="text" class="form-control" name="nama_pengirim" value="{{ $data->nama_pengirim }}" required>
                                     </div>
                                 </div>
+                                 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Isi Disposisi</label>
+                            <div class="col-md-12">
+                               <input id="pengirim" type="text" class="form-control" name="isi_disposisi" value="{{ $data->isi_disposisi }}" required>
+                            </div>
+                            </div>
                                 <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
                                     <label for="level" class="col-md-4 control-label">Disposisi</label>
 
@@ -87,7 +93,7 @@
                                     
                                     <select class="form-control" name="disposisi" required="">
                                    <!------Sekretaris---->
-                                    @if(Auth::user()->level == 'sekretaris')
+                                    @if(Auth::user()->level == 'Sekretaris')
                                     <?php
                                         $datas = array("Kepala Bbksda");
                                         foreach($datas as $data){
@@ -128,10 +134,12 @@
                                     <!------Kepala Subag Umum---->
                                     @if(Auth::user()->level == 'Subag Umum')
                                     <?php
-                                        $datas = array("Pj Umum");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+
+                                    @if(Auth::user()->level == 'Subag Umum' && $data->subag =='Subag Umum')
+                                    <option value="{{$data->pj_disposisi}}">{{$data->pj_disposisi.' '.$data->nama}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -141,10 +149,12 @@
                                     <!------Kepala Subag Evaluasi & Kehumasan---->
                                     @if(Auth::user()->level == 'Subag Evaluasi & Kehumasan')
                                     <?php
-                                        $datas = array("Pj Evaluasi & Kehumasan");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+
+                                    @if(Auth::user()->level == 'Subag Evaluasi & Kehumasan' && $data->subag =='Subag Evaluasi & Kehumasan')
+                                    <option value="{{$data->pj_disposisi}}">{{$data->pj_disposisi.' '.$data->nama}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -154,10 +164,12 @@
                                     <!------Kepala Subag Program & Kerja Sama---->
                                     @if(Auth::user()->level == 'Subag Program & Kerja Sama')
                                     <?php
-                                        $datas = array("Pj Program & Kerja Sama");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+
+                                    @if(Auth::user()->level == 'Subag Program & Kerja Sama' && $data->subag =='Subag Program & Kerja Sama')
+                                    <option value="{{$data->pj_disposisi}}">{{$data->pj_disposisi.' '.$data->nama}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -180,7 +192,6 @@
                                     <!------Kepala Subag P2---->
                                     @if(Auth::user()->level == 'Subag P2')
                                     <?php
-                                        $datas = array("Pj P2");
                                         foreach($datas as $data){
                                     ?>
                                     <option value="{{$data}}">{{$data}}</option>
@@ -193,7 +204,7 @@
                                     <!------Kepala Subag P3---->
                                     @if(Auth::user()->level == 'Subag P3')
                                     <?php
-                                        $datas = array("Pj P3");
+                                        $datas = array("PjP3");
                                         foreach($datas as $data){
                                     ?>
                                     <option value="{{$data}}">{{$data}}</option>
@@ -206,13 +217,6 @@
 
                                     </div>
                                 </div>
-
-                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Isi Disposisi</label>
-                            <div class="col-md-12">
-                                <textarea id="isi_disposisi" type="textarea" class="form-control" name="isi_disposisi" value="{{$data->isi_disposisi}}" required></textarea> 
-                            </div>
-                            </div>
                                         
                                 <button type="submit" class="btn btn-primary" id="submit">
                                             Tambah

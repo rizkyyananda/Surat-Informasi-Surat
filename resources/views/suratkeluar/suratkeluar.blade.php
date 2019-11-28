@@ -48,15 +48,15 @@
                 </thead>
                 <tbody>
                   @foreach($datas as $data)
-                  <?php 
-                      if (Auth::user()->level == $data->disposisi || Auth::user()->level =='PjP2' || Auth::user()->level =='PjP3') {
-                     ?>
+                 @if(Auth::user()->level == 'Pj Evaluasi & Kehumasan' || Auth::user()->level == 'PjP2' || Auth::user()->level == 'PjP3' || Auth::user()->level == 'Pj Program & Kerja Sama' || Auth::user()->level == 'Pj Umum' || Auth::user()->level == $data->disposisi)
                   <tr>
-                    <td><a href="{{ url('/review', $data->id) }}">{{$data->nomor_surat}}</a></td>
+                    <td>{{$data->nomor_surat}}</td>
                     <td>{{$data->tujuan_surat}}</td>
                     <td>
+                       @if(Auth::user()->level == 'Pj Evaluasi & Kehumasan' || Auth::user()->level == 'PjP2' || Auth::user()->level == 'PjP3' || Auth::user()->level == 'Pj Program & Kerja Sama' || Auth::user()->level == 'Pj Umum')
                       <button><a href="{{route('suratkeluar.edit', $data->id)}}"><i class="fa fa-edit btn btn-primary"></i></a></button>
                       <form action="{{ route('suratkeluar.destroy', $data->id) }}" class="pull-left"  method="post">
+                        @endif
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                         <button onclick="return confirm('Anda yakin ingin menghapus data ini?')"> <i class="fa fa-trash btn btn-danger" ></i>
@@ -65,9 +65,7 @@
                       <button><a href="{{route('suratkeluar.show', $data->id)}}"><i class="fa fa-search-plus btn btn-success"></i></a></button>
                     </td>
                   </tr>
-                     <?php
-                    }
-                    ?>
+                  @endif
                   @endforeach
                 </tbody>
               </table>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+// use App\Disposisi;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -57,13 +58,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $count = User::where('username',$request->input('username'))->count();
+        // $count = User::where('username',$request->input('username'))->count();
 
-        if($count>0){
-            Session::flash('message', 'Already exist!');
-            Session::flash('message_type', 'danger');
-            return redirect()->to('user');
-        }
+        // if($count>0){
+        //     Session::flash('message', 'Already exist!');
+        //     Session::flash('message_type', 'danger');
+        //     return redirect()->to('user');
+        // }
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
@@ -84,14 +85,31 @@ class UserController extends Controller
             $gambar = $fileName;
         }
 
+        if ($request->level =='PjP2') {
+            $data = "Subag P2";
+        }else if ($request->level =='PjP3') {
+            $data = "Subag P3";
+        }else if ($request->level =='Pj Evaluasi & Kehumasan') {
+            $data = "Subag Evaluasi & Kehumasan";
+        }else if ($request->level =='Pj Program & Kerja Sama') {
+            $data = "Subag Program & Kerja Sama";
+        }else if ($request->level=='Pj Umum'){
+            $data = "Subag Umum";
+        }else{
+            $data = " ";
+        } 
+        
         User::create([
             'name' => $request->input('name'),
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'level' => $request->input('level'),
             'password' => bcrypt(($request->input('password'))),
-            'gambar' => $gambar
+            'gambar' => $gambar,
+            'sub_jabatan' =>$data
         ]);
+
+        
 
         Session::flash('message', 'Berhasil ditambahkan!');
         Session::flash('message_type', 'success');
@@ -166,6 +184,20 @@ class UserController extends Controller
             $user_data->password= bcrypt(($request->input('password')));
         
         }
+        if ($request->level =='PjP2') {
+            $data = "Subag P2";
+        }else if ($request->level =='PjP3') {
+            $data = "Subag P3";
+        }else if ($request->level =='Pj Evaluasi & Kehumasan') {
+            $data = "Subag Evaluasi & Kehumasan";
+        }else if ($request->level =='Pj Program & Kerja Sama') {
+            $data = "Subag Program & Kerja Sama";
+        }else if ($request->level=='Pj Umum'){
+            $data = "Subag Umum";
+        }else{
+            $data = " ";
+        }
+        $user_data->sub_jabatan = $data; 
 
         $user_data->update();
 
@@ -184,7 +216,9 @@ class UserController extends Controller
     {
         if(Auth::user()->id != $id) {
             $user_data = User::findOrFail($id);
+            // $disposisi = Disposisi::findOrFail($id);
             $user_data->delete();
+            // $disposisi->delete();
             Session::flash('message', 'Berhasil dihapus!');
             Session::flash('message_type', 'success');
         } else {

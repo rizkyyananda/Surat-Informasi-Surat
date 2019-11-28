@@ -67,7 +67,7 @@
                     <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
                   </div>
               </div>
-              <p class="footer-text text-center" style="margin-top: 20px;color: #308ee0">Copyright © {{date('Y')}} MyKholida &#9829;</p>
+              <p class="footer-text text-center" style="margin-top: 20px;color: #308ee0">Copyright © {{date('Y')}} Balai Besar Konservasi SDA Riau</p>
             </div>
           </div>
         </div>

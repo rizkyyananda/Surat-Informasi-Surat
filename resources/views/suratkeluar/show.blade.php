@@ -83,21 +83,46 @@
                     <td>:</td>
                     <td>{{ $data->tebusan }}</td>
                   </tr>
+                   <tr>
+                    <td>Disposisi</td>
+                    <td>:</td>
+                    <td>{{ $data->disposisi }}</td>
+                  </tr>
                   <tr>
                     <td style="color: red;">Review</td>
                     <td>:</td>
                     <td style="color: red;">{{ $data->review }}</td>
                   </tr>
-							  </tr>
-							  <tr>
-							  </tr>
+
+                    @if($data->status=='Terima')
+                  <tr>
+                    <td style="color: green;">Status</td>
+                    <td>:</td>
+                    <td style="color: green;">{{ $data->status }}</td>
+                  </tr>
+                  @else
+                  <tr>
+                    <td style="color: red;">Status</td>
+                    <td>:</td>
+                    <td style="color: red;">{{ $data->status }}</td>
+                  </tr>
+                  @endif
+				</tr>
+			<tr>
+		  </tr>
 							</table>
                             <br>
                               <center>
-                                @if(Auth::user()->level == 'PjP2' || Auth::user()->level == 'PjP3')
+                         @if(Auth::user()->level == 'Pj Evaluasi & Kehumasan' || Auth::user()->level == 'PjP2' || Auth::user()->level == 'PjP3' || Auth::user()->level == 'Pj Program & Kerja Sama' || Auth::user()->level == 'Pj Umum')
+
+                         @if($data->status=='Terima' && $data->disposisi =='Kepala Bbksda')
                             <a href=" {{ url('/unduh', $data->id) }}" class="btn btn-success">Download Surat</a>
+                        @endif
                             @endif
                         </center>
+                         @if(Auth::user()->level != 'Pj Evaluasi & Kehumasan' && Auth::user()->level != 'PjP2' && Auth::user()->level != 'PjP3' && Auth::user()->level != 'Pj Program & Kerja Sama' && Auth::user()->level != 'Pj Umum')
+                        <a href="{{ url('/review', $data->id) }}" class="btn btn-primary" id="submit">Proses</a>
+                        @endif
                         <a href="{{route('suratkeluar.index')}}" class="btn btn-light pull-right">Back</a>
                             </div>
                           </div>

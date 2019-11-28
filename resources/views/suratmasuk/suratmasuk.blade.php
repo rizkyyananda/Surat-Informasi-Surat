@@ -42,7 +42,7 @@
                       No Surat
                     </th>
                     <th>
-                      Surat Masuk
+                      Disposisi
                     </th>
                     <th>
                       Action
@@ -52,12 +52,16 @@
                 <tbody>
                   @foreach($datas as $data)
                     <?php 
-                      if (Auth::user()->level == $data->disposisi || Auth::user()->level =='Sekretaris') {
+                      if (Auth::user()->level.' '.Auth::user()->name == $data->disposisi || Auth::user()->level =='Sekretaris') {
                      ?>
                   <tr>
                     <td>{{$data->nama_instansi}}</td>
                     <td>{{$data->no_surat}}</td>
+                    @if(Auth::user()->level =='PjP2' || Auth::user()->level =='PjP3' || Auth::user()->level =='Pj Evaluasi & Kehumasan' || Auth::user()->level =='Pj Program & Kerja Sama' || Auth::user()->level =='Pj Umum')
+                    <td>{{$data->disposisi}}</td>
+                    @else
                     <td><a href="{{ url('/dispo', $data->id) }}">{{$data->disposisi}}</a></td>
+                    @endif
                     <td>
                       @if(Auth::user()->level == 'Kepala Bbksda' || Auth::user()->level == 'Sekretaris')
                       <button><a href="{{route('suratmasuk.edit', $data->id)}}" title="edit"><i class="fa fa-edit btn btn-primary"></i></a></button>

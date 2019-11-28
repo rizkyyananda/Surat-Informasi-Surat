@@ -64,10 +64,11 @@ class SuratKeluarController extends Controller
             'tujuan_surat' => $request->input('tujuan_surat'),
             'tempat_tujuan' => $request->input('tempat_tujuan'),
             'alamat_tujuan' => $request->input('alamat_tujuan'),
-            'isi_surat' => $request->input('isi_surat'),
+            'isi_surat' => strip_tags($request->input('isi_surat')),
             'tebusan' => $request->input('tebusan'),
             'review' => $request->input('review'),
-            'disposisi' => $request->input('disposisi')
+            'disposisi' => $request->input('disposisi'),
+            'status' => $request->input('status')
         ]);
 
         Session::flash('message', 'Berhasil ditambahkan!');
@@ -164,16 +165,16 @@ class SuratKeluarController extends Controller
      $user_data->tujuan_surat = $request->input('tujuan_surat');
      $user_data->tempat_tujuan = $request->input('tempat_tujuan');
      $user_data->alamat_tujuan = $request->input('alamat_tujuan');
-     $user_data->isi_surat = $request->input('isi_surat');
+     $user_data->isi_surat = strip_tags($request->input('isi_surat'));
      $user_data->tebusan = $request->input('tebusan');
      $user_data->review = $request->input('review');
      $user_data->disposisi = $request->input('disposisi');
+     $user_data->status = $request->input('status');
      $user_data->update();
      Session::flash('message', 'Berhasil diubah!');
      Session::flash('message_type', 'success');
      return redirect()->to('suratkeluar');
 }
-
     /**
      * Remove the specified resource from storage.
      *

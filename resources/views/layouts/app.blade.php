@@ -88,7 +88,7 @@
       </div>
       <footer class="footer">
         <div class="container-fluid clearfix">
-          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © {{date('Y')}} MyKholida &#9829;</span>
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © {{date('Y')}}Balai Besar Konservasi SDA Riau</span>
         </div>
       </footer>
       <!-- partial -->
@@ -106,6 +106,7 @@
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.all.js')}}"></script>
 <script src="{{asset('js/select2.min.js')}}"></script>
+<script src="{{asset('vendors/tinymce/js/tinymce/tinymce.min.js')}}"></script>
 @include('sweetalert::alert')
 @section('js')
 

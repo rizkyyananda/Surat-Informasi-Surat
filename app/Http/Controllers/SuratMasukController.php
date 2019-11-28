@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SuratMasuk;
-use App\Disposisi;
+use App\User;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -137,7 +137,7 @@ class SuratMasukController extends Controller
         $data = SuratMasuk::findOrFail($id);
 
         // return view('disposisi.edit', compact('data'));
-        $datas = Disposisi::get();
+        $datas = User::get();
         return view('suratmasuk.edit',  compact('data'), compact('datas'));
     }
 
@@ -149,7 +149,8 @@ class SuratMasukController extends Controller
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
         }
-        return view('suratmasuk.disposisi',  compact('data'));
+        $datas = User::get();
+        return view('suratmasuk.disposisi',  compact('data'), compact('datas'));
     }
 
      public function updatedisposisi($id)

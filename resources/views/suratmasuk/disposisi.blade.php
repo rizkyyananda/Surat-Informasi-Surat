@@ -94,7 +94,7 @@
                                     
                                     <select class="form-control" name="disposisi" required="">
                                    <!------Sekretaris---->
-                                    @if(Auth::user()->level == 'sekretaris')
+                                    @if(Auth::user()->level == 'Sekretaris')
                                     <?php
                                         $datas = array("Kepala Bbksda");
                                         foreach($datas as $data){
@@ -135,10 +135,11 @@
                                     <!------Kepala Subag Umum---->
                                     @if(Auth::user()->level == 'Subag Umum')
                                     <?php
-                                        $datas = array("Pj Umum");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+                                    @if($data->sub_jabatan == 'Subag Umum')
+                                    <option value="{{$data->level}}">{{$data->level. ' '.$data->name}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -148,10 +149,11 @@
                                     <!------Kepala Subag Evaluasi & Kehumasan---->
                                     @if(Auth::user()->level == 'Subag Evaluasi & Kehumasan')
                                     <?php
-                                        $datas = array("Pj Evaluasi & Kehumasan");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+                                    @if($data->sub_jabatan == 'Subag Evaluasi & Kehumasan')
+                                    <option value="{{$data->level}}">{{$data->level. ' '.$data->name}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -161,10 +163,11 @@
                                     <!------Kepala Subag Program & Kerja Sama---->
                                     @if(Auth::user()->level == 'Subag Program & Kerja Sama')
                                     <?php
-                                        $datas = array("Pj Program & Kerja Sama");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+                                    @if($data->sub_jabatan == 'Subag Program & Kerja Sama')
+                                    <option value="{{$data}}">{{$data->level. ' '.$data->name}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -185,12 +188,13 @@
                                     <!------Kepala Kabid Teknis---->
 
                                     <!------Kepala Subag P2---->
-                                    @if(Auth::user()->level == 'Subag P2')
+                                   @if(Auth::user()->level == 'Subag P2')
                                     <?php
-                                        $datas = array("Pj P2");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+                                    @if($data->sub_jabatan == 'Subag P2')
+                                    <option value="{{$data->level. ' '.$data->name}}">{{$data->level. ' '.$data->name}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
@@ -200,17 +204,17 @@
                                     <!------Kepala Subag P3---->
                                     @if(Auth::user()->level == 'Subag P3')
                                     <?php
-                                        $datas = array("Pj P3");
                                         foreach($datas as $data){
                                     ?>
-                                    <option value="{{$data}}">{{$data}}</option>
+                                    @if($data->sub_jabatan == 'Subag P3')
+                                    <option value="{{$data->level}}">{{$data->level. ' '.$data->name}}</option>
+                                    @endif
                                     <?php 
                                         }
                                     ?>
                                     @endif
                                     <!------Kepala Subag P2---->
                                     </select>
-
                                     </div>
                                 </div>
                                         

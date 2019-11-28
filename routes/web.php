@@ -22,6 +22,7 @@ Route::get('/unduh/{id}', 'SuratKeluarController@unduh');
 Route::get('/dispo/{id}', 'SuratMasukController@dispo');
 Route::get('/updatedisposisi/{id}', 'SuratMasukController@updatedisposisi');
 Route::get('/review/{id}', 'SuratKeluarController@review');
+Route::get('/approve/{id}', 'SuratKeluarController@approve');
 Route::get('/updatereview/{id}', 'SuratMasukController@updatereview');
 
 
