@@ -63,13 +63,28 @@
                                     <div class="col-md-12">
                                         <input id="nama_instansi" type="hidden" class="form-control" name="tebusan" value="{{ $data->tebusan }}" required>
                                     </div>
+                                @if(Auth::user()->level == 'Subag Evaluasi & Kehumasan' || Auth::user()->level == 'Subag Program & Kerja Sama' || Auth::user()->level == 'Subag Umum' || Auth::user()->level == 'Subag P3' || Auth::user()->level == 'Subag P2')
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-4 control-label">Review</label>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="text" class="form-control" name="review" value="{{ $data->review }}" required>
+                                        <input id="nama_instansi" type="text" class="form-control" name="review_subag" value="{{ $data->review_subag }}" required>
                                     </div>
                                 </div>
-
+                                @elseif(Auth::user()->level == 'Kabag TU' || Auth::user()->level == 'Kabid Teknis')
+                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="name" class="col-md-4 control-label">Review Kabag</label>
+                                    <div class="col-md-12">
+                                        <input id="nama_instansi" type="text" class="form-control" name="review_kabag" value="{{ $data->review_kabag }}" required>
+                                    </div>
+                                </div>
+                                @elseif(Auth::user()->level == 'Kepala Bbksda')
+                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="name" class="col-md-4 control-label">Review</label>
+                                    <div class="col-md-12">
+                                        <input id="review_kepala_balai" type="text" class="form-control" name="review_kepala_balai" value="{{ $data->review_kepala_balai}}" required>
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
                                     <label for="level" class="col-md-4 control-label">Disposisi</label>
 

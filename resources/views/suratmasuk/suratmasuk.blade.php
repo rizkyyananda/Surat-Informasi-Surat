@@ -52,7 +52,7 @@
                 <tbody>
                   @foreach($datas as $data)
                     <?php 
-                      if (Auth::user()->level.' '.Auth::user()->name == $data->disposisi || Auth::user()->level =='Sekretaris') {
+                      if (Auth::user()->level == $data->disposisi || Auth::user()->level.' '.Auth::user()->name == $data->disposisi  || Auth::user()->level=='Sekretaris') {
                      ?>
                   <tr>
                     <td>{{$data->nama_instansi}}</td>

@@ -256,9 +256,20 @@
                                     @endif
                                     <!------Subag Umum || Subag Program & Kerja Sama || Pj Evaluasi & Kehumasan---->
                                     </select>
-
                                     </div>
-                                </div>
+                            @if(Auth::user()->level =='PjP3')
+                            <input type="hidden" name="pembuat_surat" value="{{Auth::user()->level .' '. Auth::user()->name}}"></input>
+                            @elseif(Auth::user()->level =='PjP2')
+                            <input type="hidden" name="pembuat_surat" value="{{Auth::user()->level .' '. Auth::user()->name}}"></input>
+                            @elseif(Auth::user()->level =='Pj Evaluasi & Kehumasan')
+                            <input type="hidden" name="pembuat_surat"value="{{Auth::user()->level .' '. Auth::user()->name}}"></input>
+                            @elseif(Auth::user()->level =='Pj Program & Kerja Sama')
+                            <input type="hidden" name="pembuat_surat"value="{{Auth::user()->level .' '. Auth::user()->name}}"></input>
+                            @else
+                            <input type="hidden" name="pembuat_surat" value="{{Auth::user()->level .' '. Auth::user()->name}}"></input>
+                            @endif
+
+                    </div>
                     <button type="submit" class="btn btn-primary" id="submit">
                         Tambah
                     </button>

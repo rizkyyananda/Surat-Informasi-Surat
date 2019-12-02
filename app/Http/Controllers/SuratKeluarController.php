@@ -68,7 +68,8 @@ class SuratKeluarController extends Controller
             'tebusan' => $request->input('tebusan'),
             'review' => $request->input('review'),
             'disposisi' => $request->input('disposisi'),
-            'status' => $request->input('status')
+            'status' => $request->input('status'),
+            'pembuat_surat' => $request->input('pembuat_surat')
         ]);
 
         Session::flash('message', 'Berhasil ditambahkan!');
@@ -167,9 +168,17 @@ class SuratKeluarController extends Controller
      $user_data->alamat_tujuan = $request->input('alamat_tujuan');
      $user_data->isi_surat = strip_tags($request->input('isi_surat'));
      $user_data->tebusan = $request->input('tebusan');
-     $user_data->review = $request->input('review');
      $user_data->disposisi = $request->input('disposisi');
      $user_data->status = $request->input('status');
+     if ($request->input('disposisi')=='Kabag TU' || $request->input('disposisi')=='Kabid Teknis' || $request->input('disposisi')=='Pj P3' || $request->input('disposisi')=='Pj P2') {
+         $user_data->review_subag = $request->input('review_subag');
+     }else if ($request->input('disposisi')=='Kepala Bbksda' && Auth::user()->level !='Kepala Bbksda'){
+        $user_data->review_kabag = $request->input('review_kabag');
+     }else if($request->input('disposisi')=='Kepala Bbksda' && Auth::user()->level == 'Kepala Bbksda'){
+        $user_data->review_kepala_balai = $request->input('review_kepala_balai');
+     }
+
+     // dd($user_data);
      $user_data->update();
      Session::flash('message', 'Berhasil diubah!');
      Session::flash('message_type', 'success');

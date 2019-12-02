@@ -38,7 +38,7 @@
                         <div class="card-body">
 							  <table class="col-md-12"> 
 							  <tr>
-							    <td width="150px;">Nomor Surat</td>
+							    <td width="200px;">Nomor Surat</td>
 							     <td>:</td>
 							    <td>{{ $data->nomor_surat }}</td>
 							  </tr>
@@ -83,18 +83,32 @@
                     <td>:</td>
                     <td>{{ $data->tebusan }}</td>
                   </tr>
-                   <tr>
+                  <tr>
                     <td>Disposisi</td>
                     <td>:</td>
                     <td>{{ $data->disposisi }}</td>
                   </tr>
                   <tr>
-                    <td style="color: red;">Review</td>
+                    <td>Pembuat Surat</td>
                     <td>:</td>
-                    <td style="color: red;">{{ $data->review }}</td>
+                    <td>{{ $data->pembuat_surat }}</td>
                   </tr>
-
-                    @if($data->status=='Terima')
+                  <tr>
+                    <td>Review Subag</td>
+                    <td>:</td>
+                    <td>{{ $data->review_subag }}</td>
+                  </tr>
+                  <tr>
+                    <td>Review Kabag/Kabid</td>
+                    <td>:</td>
+                    <td>{{ $data->review_kabag }}</td>
+                  </tr>
+                  <tr>
+                    <td>Review Kepala Balai</td>
+                    <td>:</td>
+                    <td>{{ $data->review_kepala_balai }}</td>
+                  </tr>
+                  @if($data->status=='Terima')
                   <tr>
                     <td style="color: green;">Status</td>
                     <td>:</td>
