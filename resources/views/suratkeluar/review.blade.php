@@ -49,7 +49,7 @@
                                         <input id="nama_instansi" type="hidden" class="form-control" name="hal" value="{{ $data->hal }}" required>
                                     </div>
                                     <div class="col-md-12">
-                                        <input id="nama_instansi" type="hidden" class="form-control" name="tujuan_surat" value="{{ $data->nomor_surat }}" required>
+                                        <input id="nama_instansi" type="hidden" class="form-control" name="tujuan_surat" value="{{ $data->tujuan_surat }}" required>
                                     </div>
                                     <div class="col-md-12">
                                         <input id="nama_instansi" type="hidden" class="form-control" name="tempat_tujuan" value="{{ $data->tempat_tujuan }}" required>
